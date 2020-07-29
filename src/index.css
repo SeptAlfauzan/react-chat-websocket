@@ -7,7 +7,72 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+#container::-webkit-scrollbar{
+  width: 5px !important;
+}
+#container::-webkit-scrollbar-track{
+  width: 5px !important;
+  background: #edf9ff !important;
+}
+#container::-webkit-scrollbar-thumb{
+  width: 5px !important;
+  background: #00bcd4 !important;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+#container{
+  padding: 10px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  margin: 0;
+}
+
+/* CSS talk bubble */
+.talk-bubble-left h5, .talk-bubble-right h5{
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-top: 0;
+}
+.talk-bubble-left {
+  margin: 3px auto 3px 0;
+  display: inline-block;
+  position: relative;
+  max-width: 80%;
+  border-radius: 15px 15px 15px 0;
+  height: auto;
+  background-color: #cad6dd;
+}
+.talk-bubble-right {
+  margin: 3px 0 3px auto;
+  display: inline-block;
+  text-align: right !important;
+  position: relative;
+  max-width: 80%;
+  border-radius: 15px 15px 0 15px;
+  height: auto;
+  color: #fff;
+  background-color: #00b8d4;
+}
+/* talk bubble contents */
+.talktext {
+  position: relative;
+  word-wrap: break-word;
+  padding: 1em;
+  text-align: left;
+  line-height: 1.5em;
+  font-size: 14px;
+  font-weight: 300;
+}
+.talktext p {
+  /* remove webkit p margins */
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
 }
