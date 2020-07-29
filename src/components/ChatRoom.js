@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Container, Input,  Grid, IconButton } from '@material-ui/core';
 import SendIcon from '@material-ui/icons/Send';
 import DialogFormUsername from './DialogFormUsername';
+import dotenv from 'dotenv';
+dotenv.config();
 
 let ws;
 // chack is there any websocket
@@ -11,7 +13,7 @@ if (ws) {
 }
 // instance of new webscoket from server
 // const socketProtocol = (window.location.protocol === 'https:' ? 'wss:' : 'ws:')
-ws = new WebSocket('ws://localhost:4000');
+ws = new WebSocket(process.env.REACT_APP_API_WEBSOCKET_URL);
 
 const ChatRoom = () => {
     const [username, setUsername] = useState('');
@@ -81,10 +83,10 @@ const ChatRoom = () => {
 
     return (
         <Container maxWidth="sm">
-            <h3>Simple chat room</h3>
+            <h3>Simple global chat room</h3>
             <DialogFormUsername message={alert} setUsername={handleSetUsername} open={open} handleClose={handleClose} />
             <form action="/" method="post" onSubmit={handleSubmit}>
-                <div id="container" style={{ height: '80vh', width: '100%', overflowY: 'scroll' }}>
+                <div id="container" style={{ height: '75vh', width: '100%', overflowY: 'scroll' }}>
 
                     {chatsList.map(data => {
                         return data.sender === username? 
@@ -107,7 +109,7 @@ const ChatRoom = () => {
                 </div>
                 <Grid container style={{ bottom: 0, margin: 0 }} spacing={2}>
                     <Grid item xs={10}>
-                        <Input value={chat} onChange={(e) => setChat(e.target.value)} id="messageBox" fullWidth variant="outlined" placeholder="type your message"></Input>
+                        <Input required autoComplete="false" autoFocus value={chat} onChange={(e) => setChat(e.target.value)} id="messageBox" fullWidth variant="outlined" placeholder="type your message"></Input>
                     </Grid>
                     <Grid item xs={2}>
                         <IconButton onClick={handleSubmit} color="primary" type="submit" aria-label="upload picture" component="span">

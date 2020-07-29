@@ -28,6 +28,7 @@ export default function DialogFormUsername(props) {
             {props.message} Type your username
           </DialogContentText>
           <TextField
+            autoComplete="false"
             onChange={handleOnchange}
             defaultValue={username}
             autoFocus
